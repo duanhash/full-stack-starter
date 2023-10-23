@@ -16,6 +16,7 @@ const app = (
     </HelmetProvider>
   </StaticContextProvider>
 );
+
 if (import.meta.env.NODE_ENV === 'production') {
   hydrateRoot(container, app);
 } else {
