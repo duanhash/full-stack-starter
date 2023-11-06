@@ -5,7 +5,9 @@ const initialState = {
   isLoading: false,
   graphData: null,
   logo: null,
-  companyData: null,
+  profileData: null,
+  financialData: null,
+  keyStatisticsData: null,
   companyNews: null,
 };
 
@@ -13,7 +15,7 @@ export const getStockData = createAsyncThunk(
   "search/getStockData",
   async (input, thunkAPI) => {
     try {
-      const [graphResponse, logoResponse, newsResponse, companyResponse] =
+      const [graphResponse, logoResponse, newsResponse, profileResponse, financialResponse, keyStatisticsResponse] =
         await Promise.all([
           axios.get(
             `https://api.twelvedata.com/time_series?symbol=${input}&interval=1day&outputsize=5000&order=ASC&apikey=${
@@ -26,29 +28,45 @@ export const getStockData = createAsyncThunk(
             }`
           ),
           axios.get(
-            `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=${input}&limit=14&apikey=${
-              import.meta.env.VITE_ALPHAVANTAGE_API_KEY
+            `https://api.polygon.io/v2/reference/news?ticker=${input}&order=desc&limit=13&apiKey=${
+              import.meta.env.VITE_POLYGON_API_KEY
             }`
           ),
           axios.request({
-            method: "GET",
-            url: "https://mboum-finance.p.rapidapi.com/mo/module/",
-            params: {
-              symbol: input,
-              module:
-                "asset-profile,default-key-statistics,financial-data,earnings",
-            },
+            method: 'GET',
+            url: 'https://mboum-finance.p.rapidapi.com/qu/quote/asset-profile',
+            params: {symbol: input},
             headers: {
-              "X-RapidAPI-Key": `${import.meta.env.VITE_MBOUMFINANCE_API_KEY}`,
-              "X-RapidAPI-Host": "mboum-finance.p.rapidapi.com",
-            },
+              'X-RapidAPI-Key': `${import.meta.env.VITE_RAPIDAPI_API_KEY}`,
+              'X-RapidAPI-Host': 'mboum-finance.p.rapidapi.com'
+            }
           }),
+          axios.request({
+            method: 'GET',
+            url: 'https://mboum-finance.p.rapidapi.com/qu/quote/financial-data',
+            params: {symbol: input},
+            headers: {
+              'X-RapidAPI-Key': `${import.meta.env.VITE_RAPIDAPI_API_KEY}`,
+              'X-RapidAPI-Host': 'mboum-finance.p.rapidapi.com'
+            }
+          }),
+          axios.request({
+            method: 'GET',
+            url: 'https://mboum-finance.p.rapidapi.com/qu/quote/default-key-statistics',
+            params: {symbol: input},
+            headers: {
+              'X-RapidAPI-Key': `${import.meta.env.VITE_RAPIDAPI_API_KEY}`,
+              'X-RapidAPI-Host': 'mboum-finance.p.rapidapi.com'
+            }
+          })
         ]);
       return {
         graphData: graphResponse.data,
         logo: logoResponse.data.url,
-        companyNews: newsResponse.data.feed,
-        companyData: companyResponse.data,
+        companyNews: newsResponse.data.results,
+        profileData: profileResponse.data.body,
+        financialData: financialResponse.data.body,
+        keyStatisticsData: keyStatisticsResponse.data.body,
       };
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -59,14 +77,7 @@ export const getStockData = createAsyncThunk(
 const searchSlice = createSlice({
   name: "search",
   initialState,
-  reducers: {
-    clearData: (state) => {
-      state.graphData = null;
-      state.logo = null;
-      state.companyData = null;
-      state.companyNews = null;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(getStockData.pending, (state) => {
@@ -78,7 +89,9 @@ const searchSlice = createSlice({
         state.graphData = action.payload.graphData;
         state.logo = action.payload.logo;
         state.companyNews = action.payload.companyNews;
-        state.companyData = action.payload.companyData;
+        state.profileData = action.payload.profileData;
+        state.financialData = action.payload.financialData;
+        state.keyStatisticsData = action.payload.keyStatisticsData;
       })
       .addCase(getStockData.rejected, (state, action) => {
         console.log(action);
@@ -87,6 +100,6 @@ const searchSlice = createSlice({
   },
 });
 
-export const { clearData } = searchSlice.actions;
+export const {} = searchSlice.actions;
 
 export default searchSlice.reducer;

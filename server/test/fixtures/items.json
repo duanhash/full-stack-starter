@@ -1,0 +1,26 @@
+[
+  {
+    "model": "Item",
+    "data": {
+      "id": 5000,
+      "Title": "AAPL",
+      "Text": "Apple Inc."
+    }
+  },
+  {
+    "model": "Item",
+    "data": {
+      "id": 5001,
+      "Title": "GOOG",
+      "Text": "Alphabet Inc."
+    }
+  },
+  {
+    "model": "Item",
+    "data": {
+      "id": 5002,
+      "Title": "MSFT",
+      "Text": "Microsoft Corporation"
+    }
+  }
+]

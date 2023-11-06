@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { useDispatch } from "react-redux";
-import { getStockData, clearData } from "../features/search/SearchSlice";
-import { setStockRoute } from "../features/home/homeSlice";
+import { getStockData } from "../Features/search/searchSlice";
+import { setStockRoute } from "../Features/home/homeSlice";
 import { Link, useNavigate } from "react-router-dom";
 import us_ticker_symbols from "../us_ticker_symbols";
 
@@ -18,9 +18,9 @@ const SearchResults = ({
     <div className="tw-w-full tw-bg-base-100 tw-flex tw-flex-col tw-shadow-xl tw-rounded-xl tw-max-h-[300px] tw-overflow-y-scroll tw-absolute tw-z-20">
       {input &&
         filteredResults.map(stock => (
-          <Link to={`Stocks/${stock}`} key={stock}>
+          <Link to={`Stocks/${stock}`} key={stock + "Results"}>
             <div
-              className="tw-py-3 tw-px-5 tw-text-white hover:tw-bg-info"
+              className="tw-py-3 tw-px-5 tw-text-white hover:tw-bg-secondary"
               onClick={() => {
                 setInput(stock);
                 setAlert(false);
@@ -50,7 +50,6 @@ const SearchBar = () => {
     e.preventDefault();
     if (us_ticker_symbols.includes(input)) {
       setSearched(true);
-      dispatch(clearData());
       dispatch(getStockData(input));
       dispatch(setStockRoute(input));
       navigate(`Stocks/${input}`);
@@ -93,7 +92,7 @@ const SearchBar = () => {
             type="text"
             placeholder="U.S. Tickers Only"
             value={input}
-            className="tw-w-full tw-py-3 tw-pl-12 tw-pr-3 tw-text-white tw-border-isabelline tw-border-2 tw-rounded-md tw-outline-none tw-bg-base-100 focus:tw-border-info"
+            className="tw-w-full tw-py-3 tw-pl-12 tw-pr-3 tw-text-white tw-border-isabelline tw-border-2 tw-rounded-md tw-outline-none tw-bg-base-100 focus:tw-border-secondary"
             onChange={searchItems}
           />
         </div>

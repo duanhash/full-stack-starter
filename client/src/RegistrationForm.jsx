@@ -7,7 +7,7 @@ function RegistrationForm({ error, isLoading, onChange, onSubmit, user }) {
       <fieldset disabled={isLoading}>
         {error && error.message && <div className="alert alert-danger">{error.message}</div>}
         <div className="mb-3">
-          <label className="form-label" htmlFor="firstName">
+          <label className="form-label tw-text-white" htmlFor="firstName">
             First name
           </label>
           <input
@@ -21,7 +21,7 @@ function RegistrationForm({ error, isLoading, onChange, onSubmit, user }) {
           {error?.errorMessagesHTMLFor?.('firstName')}
         </div>
         <div className="mb-3">
-          <label className="form-label" htmlFor="lastName">
+          <label className="form-label tw-text-white" htmlFor="lastName">
             Last name
           </label>
           <input
@@ -35,7 +35,7 @@ function RegistrationForm({ error, isLoading, onChange, onSubmit, user }) {
           {error?.errorMessagesHTMLFor?.('lastName')}
         </div>
         <div className="mb-3">
-          <label className="form-label" htmlFor="email">
+          <label className="form-label tw-text-white" htmlFor="email">
             Email
           </label>
           <input
@@ -49,7 +49,7 @@ function RegistrationForm({ error, isLoading, onChange, onSubmit, user }) {
           {error?.errorMessagesHTMLFor?.('email')}
         </div>
         <div className="mb-3">
-          <label className="form-label" htmlFor="password">
+          <label className="form-label tw-text-white" htmlFor="password">
             Password
           </label>
           <input
@@ -63,7 +63,7 @@ function RegistrationForm({ error, isLoading, onChange, onSubmit, user }) {
           {error?.errorMessagesHTMLFor?.('password')}
         </div>
         <div className="mb-3 d-grid">
-          <button className="btn btn-primary" type="submit">
+          <button className="tw-btn tw-btn-outline tw-btn-info hover:tw-text-white" type="submit">
             Submit
           </button>
         </div>

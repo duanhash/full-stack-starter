@@ -50,14 +50,14 @@ function Login() {
       <main className="container">
         <div className="row justify-content-center">
           <div className="col col-sm-10 col-md-8 col-lg-6 col-xl-4">
-            <div className="card">
+            <div className="card tw-bg-neutral">
               <div className="card-body">
-                <h2 className="card-title">Log in</h2>
+                <h2 className="card-title tw-text-white">Log in</h2>
                 {location.state?.flash && <div className="alert alert-success">{location.state?.flash}</div>}
                 {showInvalidError && <div className="alert alert-danger">Invalid email and/or password.</div>}
                 <form onSubmit={onSubmit}>
                   <div className="mb-3">
-                    <label className="form-label" htmlFor="email">
+                    <label className="form-label tw-text-white" htmlFor="email">
                       Email
                     </label>
                     <input
@@ -70,7 +70,7 @@ function Login() {
                     />
                   </div>
                   <div className="mb-3">
-                    <label className="form-label" htmlFor="password">
+                    <label className="form-label tw-text-white" htmlFor="password">
                       Password
                     </label>
                     <input
@@ -83,11 +83,11 @@ function Login() {
                     />
                   </div>
                   <div className="mb-3 d-grid">
-                    <button className="btn btn-primary" type="submit">
+                    <button className="tw-btn tw-btn-outline tw-btn-info hover:tw-text-white" type="submit">
                       Submit
                     </button>
                   </div>
-                  <div className="mb-3 text-center">
+                  <div className="mb-3 text-center tw-btn-link tw-text-info">
                     <Link to="/passwords/forgot">Forgot your password?</Link>
                     {staticContext?.env?.VITE_FEATURE_REGISTRATION === 'true' && (
                       <>

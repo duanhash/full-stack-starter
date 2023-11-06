@@ -51,14 +51,14 @@ function Header() {
   }
 
   return (
-    <nav className="tw-bg-base-100 tw-sticky tw-left-0 tw-right-0 tw-z-20 tw-top-0">
+    <nav className="tw-bg-base-100 tw-sticky tw-left-0 tw-right-0 tw-z-20 tw-top-0 tw-mb-24">
       <div className="tw-container tw-px-6 tw-py-2 tw-mx-auto md:tw-flex">
         <div className="tw-flex tw-items-center tw-justify-between">
           <Link to="/">
             <img width={50} height={50} src={logo} alt="Duan Logo" />
           </Link>
           <div className="tw-flex md:tw-hidden">
-            <label className="tw-btn tw-btn-circle tw-swap tw-swap-rotate tw-bg-base-100 tw-border-base-100 tw-text-white hover:tw-bg-info">
+            <label className="tw-btn tw-btn-circle tw-swap tw-swap-rotate tw-bg-base-100 tw-border-base-100 tw-text-white hover:tw-bg-secondary">
               <input type="checkbox" onClick={() => setNavbarShowing(!isNavbarShowing)} />
               <svg
                 className="tw-swap-off tw-fill-current"
@@ -89,7 +89,7 @@ function Header() {
           <div className="tw-flex tw-flex-col tw-px-2 tw--mx-4 md:tw-flex-row md:tw-mx-10 md:tw-py-0">
             {navigation.map(item => (
               <Link to={item.path} key={item.path}>
-                <label className="tw-px-2.5 tw-py-2 tw-text-white tw-bg-base-100 tw-border-base-100 tw-transition-colors tw-duration-300 tw-transform hover:tw-bg-info md:tw-mx-2 tw-btn tw-btn-ghost tw-rounded-btn">
+                <label className="tw-px-2.5 tw-py-2 tw-text-white tw-bg-base-100 tw-border-base-100 tw-transition-colors tw-duration-300 tw-transform hover:tw-bg-secondary hover:tw-text-base-100 md:tw-mx-2 tw-btn tw-btn-ghost tw-rounded-btn">
                   {item.name}
                 </label>
               </Link>
@@ -97,17 +97,17 @@ function Header() {
             <div className="tw-dropdown tw-dropdown-end">
               <label
                 tabIndex={0}
-                className="tw-px-2.5 tw-py-2 tw-text-white tw-bg-base-100 tw-border-base-100 tw-transition-colors tw-duration-300 tw-transform hover:tw-bg-info md:tw-mx-2 tw-btn tw-btn-ghost tw-rounded-btn"
+                className="tw-px-2.5 tw-py-2 tw-text-white tw-bg-base-100 tw-border-base-100 tw-transition-colors tw-duration-300 tw-transform hover:tw-bg-secondary hover:tw-text-base-100 md:tw-mx-2 tw-btn tw-btn-ghost tw-rounded-btn"
               >
                 Indexes
               </label>
               <ul
                 tabIndex={0}
-                className="tw-left-0 tw-menu tw-dropdown-content tw-z-20 tw-p-2 tw-shadow tw-text-white tw-bg-base-100 tw-rounded-box tw-w-52 tw-mt-4"
+                className="tw-left-0 tw-menu tw-dropdown-content tw-z-20 tw-p-2 tw-shadow tw-text-white tw-bg-neutral tw-rounded-box tw-w-52 tw-mt-4"
               >
                 {navIndexes.map(item => (
                   <Link to={item.path} key={item.path}>
-                    <li className="tw-btn tw-btn-ghost tw-rounded-btn tw-w-full tw-hover:bg-info">
+                    <li className="tw-btn tw-btn-ghost tw-rounded-btn tw-w-full hover:tw-bg-secondary hover:tw-text-base-100">
                       {item.name}
                     </li>
                   </Link>
@@ -144,8 +144,10 @@ function Header() {
             )}
             {!user && (
               <li>
-                <Link className="text-white" to="/login" onClick={hideNavbar}>
-                  Log in
+                <Link to="/login" onClick={hideNavbar}>
+                  <label className="tw-px-2.5 tw-py-2 tw-text-white tw-bg-base-100 tw-border-base-100 tw-transition-colors tw-duration-300 tw-transform hover:tw-bg-secondary hover:tw-text-base-100 md:tw-mx-2 tw-btn tw-btn-ghost tw-rounded-btn">
+                    Log In
+                  </label>
                 </Link>
               </li>
             )}

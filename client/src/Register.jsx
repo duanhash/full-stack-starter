@@ -53,11 +53,11 @@ function Register() {
       <main className="container">
         <div className="row justify-content-center">
           <div className="col col-sm-10 col-md-8 col-lg-6 col-xl-4">
-            <div className="card">
+            <div className="card tw-bg-neutral">
               <div className="card-body">
-                <h2 className="card-title">Register</h2>
+                <h2 className="card-title tw-text-white">Register</h2>
                 <RegistrationForm onChange={onChange} onSubmit={onSubmit} error={error} user={user} />
-                <div className="mb-3 text-center">
+                <div className="mb-3 text-center tw-btn-link tw-text-info">
                   <Link to="/login">Already have an account?</Link>
                 </div>
               </div>
