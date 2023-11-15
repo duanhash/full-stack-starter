@@ -8,7 +8,7 @@ const Table = ({ data, title }) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="tw-grid tw-flex-shrink tw-h-full tw-w-full tw-px-8 tw-card tw-bg-base-100 tw-rounded-box tw-place-items-center tw-overflow-hidden">
+    <div className="tw-grid tw-flex-shrink tw-h-full tw-w-full tw-px-8 tw-card tw-bg-neutral tw-rounded-box tw-place-items-center tw-overflow-hidden">
       <div className="tw-overflow-x-auto tw-w-full">
         <h1 className="tw-flex tw-justify-center tw-py-4 tw-text-3xl tw-text-white">
           {title}

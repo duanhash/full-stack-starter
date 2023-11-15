@@ -14,4 +14,14 @@ router.get('/', async (req, res) => {
   
 })
 
+router.get('/:id', async (req, res) => {
+  try {
+    const record = await models.Item.findByPk(req.params.id);
+    res.json(record.toJSON());
+  } catch (err) {
+    console.log(err);
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).end();
+  }
+})
+
 export default router;
