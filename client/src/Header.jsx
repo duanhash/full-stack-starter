@@ -17,6 +17,7 @@ function Header() {
   const navigation = [
     { name: "Home", path: "/" },
     { name: "Stocks", path: `Stocks/${stockRoute}` },
+    { name: "Classroom", path: "/Classroom"}
   ];
 
   const navIndexes = [

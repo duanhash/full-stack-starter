@@ -9,7 +9,7 @@ import { useStaticContext } from './StaticContext';
 import AppRedirects from './AppRedirects';
 import Header from './Header';
 import Footer from './Components/Footer'
-import { Dow, ErrorPage, Stocks } from './Pages';
+import { Dow, ErrorPage, Stocks, Classroom } from './Pages';
 import Home from './Home';
 import Login from './Login';
 import AdminRoutes from './Admin/AdminRoutes';
@@ -34,6 +34,7 @@ function App() {
                   <Route path="/" element={<Home />} errorElement={<ErrorPage />} />
                   <Route path="/Stocks/:stock" element={<Stocks />} errorElement={<ErrorPage />}/>
                   <Route path="Indexes/Dow" element={<Dow />} errorElement={<ErrorPage />}/>
+                  <Route path="/Classroom" element={<Classroom />} errorElement={<ErrorPage />}/>
                   <Route path="/login" element={<Login />} />
                   <Route path="/passwords/*" element={<PasswordsRoutes />} />
                   <Route path="/invites/*" element={<InvitesRoutes />} />

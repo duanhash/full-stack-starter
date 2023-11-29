@@ -36,13 +36,13 @@ const News = ({ newsData, isLoading }) => {
                     newsData[0].keywords.map(topic => (
                       <div
                         className="tw-badge tw-badge-outline tw-text-white tw-outline-white"
-                        key={newsData[0].id}
+                        key={newsData[0].id + 'keywords'}
                       >{`#${topic}`}</div>
                     ))}
                   {newsData[0].tickers.map(ticker => (
                     <div
                       className="tw-badge tw-badge-outline tw-text-white tw-outline-white"
-                      key={newsData[0].id}
+                      key={newsData[0].id + 'tickers'}
                     >{`${ticker}`}</div>
                   ))}
                 </div>
@@ -55,7 +55,7 @@ const News = ({ newsData, isLoading }) => {
                 href={article.article_url}
                 target="_blank"
                 className="tw-mx-auto tw-max-w-sm"
-                key={article.id}
+                key={article.id + 'url'}
               >
                 <div className="tw-card tw-w-full tw-bg-neutral tw-shadow-xl">
                   <figure>
@@ -76,13 +76,13 @@ const News = ({ newsData, isLoading }) => {
                         article.keywords.map(topic => (
                           <div
                             className="tw-badge tw-badge-outline tw-text-white tw-outline-white"
-                            key={article.id}
+                            key={article.id + 'keywords'}
                           >{`#${topic}`}</div>
                         ))}
                       {article.tickers.map(ticker => (
                         <div
                           className="tw-badge tw-badge-outline tw-text-white tw-outline-white"
-                          key={article.id}
+                          key={article.id + 'tickers'}
                         >{`${ticker}`}</div>
                       ))}
                     </div>
