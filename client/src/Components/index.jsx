@@ -5,6 +5,9 @@ import Chart from './Chart';
 import News from './News';
 import Spinner from './Spinner';
 import TopGainLoss from './TopGainLoss';
+import StockForm from './StockForm';
+import DevStocks from './DevStocks';
+import DevStocksDetail from './DevStocksDetail';
 
 export {
   SearchBar,
@@ -13,5 +16,8 @@ export {
   Chart,
   News,
   Spinner,
-  TopGainLoss
+  TopGainLoss,
+  StockForm,
+  DevStocks,
+  DevStocksDetail
 };

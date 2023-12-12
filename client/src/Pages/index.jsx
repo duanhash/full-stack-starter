@@ -1,6 +1,6 @@
 import ErrorPage from "./ErrorPage";
 import Dow from "./Dow";
 import Stocks from "./Stocks";
-import Classroom from "./Classroom";
+import DevHome from "./DevHome";
 
-export { ErrorPage, Dow, Stocks, Classroom };
+export { ErrorPage, Dow, DevHome, Stocks };

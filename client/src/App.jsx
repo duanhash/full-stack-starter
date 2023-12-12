@@ -8,8 +8,8 @@ import AuthContextProvider from './AuthContextProvider';
 import { useStaticContext } from './StaticContext';
 import AppRedirects from './AppRedirects';
 import Header from './Header';
-import Footer from './Components/Footer'
-import { Dow, ErrorPage, Stocks, Classroom } from './Pages';
+import { StockForm, Footer, DevStocksDetail } from './Components'
+import { Dow, ErrorPage, Stocks, DevHome } from './Pages';
 import Home from './Home';
 import Login from './Login';
 import AdminRoutes from './Admin/AdminRoutes';
@@ -33,8 +33,11 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Home />} errorElement={<ErrorPage />} />
                   <Route path="/Stocks/:stock" element={<Stocks />} errorElement={<ErrorPage />}/>
-                  <Route path="Indexes/Dow" element={<Dow />} errorElement={<ErrorPage />}/>
-                  <Route path="/Classroom" element={<Classroom />} errorElement={<ErrorPage />}/>
+                  <Route path="/dev/stocks/new" element={<StockForm />} />
+                  <Route path='/dev/stocks/:id/edit' element={<StockForm />} />
+                  <Route path='/dev/detail/:id' element={<DevStocksDetail />} />
+                  <Route path='/dev/home' element={<DevHome />} />
+                  <Route path="/Indexes/Dow" element={<Dow />} errorElement={<ErrorPage />}/>
                   <Route path="/login" element={<Login />} />
                   <Route path="/passwords/*" element={<PasswordsRoutes />} />
                   <Route path="/invites/*" element={<InvitesRoutes />} />
@@ -46,7 +49,7 @@ function App() {
             }
           />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </Provider>
     </AuthContextProvider>
   );

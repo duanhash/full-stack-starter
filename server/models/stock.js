@@ -21,7 +21,7 @@ export default function (sequelize, DataTypes) {
     ImagesUrl: {
       type: DataTypes.VIRTUAL,
       get() {
-        return this.assetUrl('Images')
+        return this.assetUrl('Images');
       }
     }
   }, {

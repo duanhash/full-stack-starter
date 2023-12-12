@@ -45,5 +45,10 @@ describe('/api/stocks', () => {
     const record = await models.Stock.findByPk(5000);
     assert.deepStrictEqual(record, null);
   });
+
+  it('fetch one Stock record from the table', async () => {
+    const response = await testSession.get('/api/stocks/5000').expect(StatusCodes.OK);
+    assert.deepStrictEqual(response.body?.Ticker, 'Ticker 5000');
+  })
   
 });

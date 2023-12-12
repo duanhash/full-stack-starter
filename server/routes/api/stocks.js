@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
   try {
-    const record = await models.Stock.create(_.pick(req.body, ['Ticker', 'Company', 'Founded', 'About', 'Industry']));
+    const record = await models.Stock.create(_.pick(req.body, ['Ticker', 'Company', 'Founded', 'About', 'Industry', 'Images']));
     res.status(StatusCodes.CREATED).json(record.toJSON());
   } catch (err) {
     console.log(err);
@@ -27,23 +27,13 @@ router.get('/', async (req, res) => {
 router.patch('/:id', async (req, res) => {
   try {
     const record = await models.Stock.findByPk(req.params.id);
-    await record.update(_.pick(req.body, ['Ticker', 'Company', 'Founded', 'About', 'Industry']));
+    await record.update(_.pick(req.body, ['Ticker', 'Company', 'Founded', 'About', 'Industry', 'Images']));
     res.json(record.toJSON());
   } catch (err) {
     console.log(err);
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).end();
   }
 });
-
-router.get('/:id', async (req, res) => {
-  try {
-    const record = await models.Stock.findByPk(req.params.id);
-    res.json(record.toJSON());
-  } catch (err) {
-    console.log(err);
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).end();
-  }
-})
 
 router.delete('/:id', async (req, res) => {
   try {
@@ -55,5 +45,16 @@ router.delete('/:id', async (req, res) => {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).end();
   }
 });
+
+
+router.get('/:id', async (req, res) => {
+  try {
+    const record = await models.Stock.findByPk(req.params.id);
+    res.json(record.toJSON());
+  } catch (err) {
+    console.log(err);
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).end();
+  }
+})
 
 export default router;
