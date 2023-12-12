@@ -49,10 +49,10 @@ function AdminUsersList() {
       <Helmet>
         <title>Manage Users - {staticContext?.env?.VITE_SITE_TITLE ?? ''}</title>
       </Helmet>
-      <main className="users container">
+      <main className="users container tw-text-white">
         <h1>Manage Users</h1>
         <div className="mb-5">
-          <Link to="invite" className="btn btn-outline-primary">
+          <Link to="invite" className="tw-btn tw-btn-outline tw-btn-info hover:tw-text-white">
             Invite a new User
           </Link>
         </div>

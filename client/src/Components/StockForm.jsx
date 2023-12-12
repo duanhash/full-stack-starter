@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import PhotoInput from "./PhotoInput";
 import { useNavigate, useParams } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
 
 const StockForm = () => {
   const navigate = useNavigate();
@@ -15,7 +13,6 @@ const StockForm = () => {
     Industry: '',
     Images: '',
   })
-  const [isConfirmDeleteModal, setIsConfirmDeleteModal] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -59,14 +56,6 @@ const StockForm = () => {
     }
   }
 
-  const showConfirmDeleteModal = () => {
-    setIsConfirmDeleteModal(true);
-  }
-
-  const handleClose = () => {
-    setIsConfirmDeleteModal(false);
-  }
-
   const onDelete = async () => {
     try {
       await fetch(`/api/stocks/${id}`, {
@@ -83,17 +72,17 @@ const StockForm = () => {
 
   return (
     <div className='container'>
-      <h1>Stock Form</h1>
+      <h1 className='tw-text-white'>Stock Form</h1>
       <form onSubmit={onSubmit}>
-        <div className='mb-3'>
+        <div className='mb-3 tw-text-white'>
           <label htmlFor='Ticker'>Ticker</label>
           <input type='text' id='Ticker' name='Ticker' value={data.Ticker} className='form-control' onChange={onChange}/>
         </div>
-        <div className='mb-3'>
+        <div className='mb-3 tw-text-white'>
           <label htmlFor='About'>About</label>
           <input type='text' id='About' name='About' value={data.About} className='form-control' onChange={onChange}/>
         </div>
-        <div className='mb-3'>
+        <div className='mb-3 tw-text-white'>
           <label htmlFor='Images'>Images</label>
           <PhotoInput id='Images' name='Images' value={data.Images} valueUrl={data.ImagesUrl} className='card' onChange={onChange}>
             <div className='card-body'>
@@ -102,23 +91,21 @@ const StockForm = () => {
           </PhotoInput>
           </div>
           <div className='d-flex justify-content-between'>
-            <button type='submit' className='btn btn-primary'>Submit</button>
-            <button onClick={showConfirmDeleteModal} type='button' className='btn btn-danger'>Delete</button>
+            <button type='submit' className='tw-btn tw-btn-outline tw-btn-info hover:tw-text-white'>Submit</button>
+            <button onClick={()=>document.getElementById('my_modal_5').showModal()} type='button' className='tw-btn tw-btn-outline tw-btn-error hover:tw-text-white'>Delete</button>
+            <dialog id="my_modal_5" className="tw-modal tw-modal-bottom sm:tw-modal-middle">
+              <div className="tw-modal-box">
+                <h3 className="tw-font-bold tw-text-3xl tw-text-white">Delete</h3>
+                <p className="tw-py-4 tw-text-white tw-text-lg">Are you sure you want to delete this stock?</p>
+                <div className="tw-modal-action">
+                  <form method="dialog">
+                    <button className='tw-btn tw-btn-outline tw-btn-success hover:tw-text-white tw-mr-3' onClick={onDelete}>Yes</button>
+                    <button className="tw-btn tw-btn-outline tw-btn-error hover:tw-text-white">No</button>
+                  </form>
+                </div>
+              </div>
+            </dialog>
           </div>
-          <Modal centered show={isConfirmDeleteModal} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Delete</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>Are you sure you want to delete this stock?</Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                No
-              </Button>
-              <Button variant="danger" onClick={onDelete}>
-                Yes
-              </Button>
-            </Modal.Footer>
-          </Modal>
       </form>
     </div>
   );

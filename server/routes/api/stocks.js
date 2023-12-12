@@ -19,8 +19,13 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
-  const records = await models.Stock.findAll();
-  res.json(records.map((record) => record.toJSON()));
+  try {
+    const records = await models.Stock.findAll();
+    res.json(records.map((record) => record.toJSON()));
+  } catch (err) {
+    console.log(err);
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).end();
+  }
   
 })
 

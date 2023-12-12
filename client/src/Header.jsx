@@ -90,21 +90,18 @@ function Header() {
           <div className="tw-flex tw-flex-col tw-px-2 tw--mx-4 md:tw-flex-row md:tw-mx-10 md:tw-py-0">
             {navigation.map(item => (
               <Link to={item.path} key={item.path}>
-                <label className="tw-px-2.5 tw-py-2 tw-text-white tw-bg-base-100 tw-border-base-100 tw-transition-colors tw-duration-300 tw-transform hover:tw-bg-secondary hover:tw-text-base-100 md:tw-mx-2 tw-btn tw-btn-ghost tw-rounded-btn">
+                <label className="tw-px-2.5 tw-py-2 tw-text-white tw-bg-base-100 hover:tw-bg-secondary hover:tw-text-base-100 md:tw-mx-2 tw-btn tw-btn-ghost tw-rounded-btn">
                   {item.name}
                 </label>
               </Link>
             ))}
-            <div className="tw-dropdown tw-dropdown-end">
-              <label
-                tabIndex={0}
-                className="tw-px-2.5 tw-py-2 tw-text-white tw-bg-base-100 tw-border-base-100 tw-transition-colors tw-duration-300 tw-transform hover:tw-bg-secondary hover:tw-text-base-100 md:tw-mx-2 tw-btn tw-btn-ghost tw-rounded-btn"
-              >
+            <div className="tw-dropdown tw-dropdown-bottom">
+              <div tabIndex={0} role="button" className="tw-px-2.5 tw-py-2 tw-text-white tw-bg-base-100 hover:tw-bg-secondary hover:tw-text-base-100 md:tw-mx-2 tw-btn tw-btn-ghost tw-rounded-btn">
                 Indexes
-              </label>
+              </div>
               <ul
                 tabIndex={0}
-                className="tw-left-0 tw-menu tw-dropdown-content tw-z-20 tw-p-2 tw-shadow tw-text-white tw-bg-neutral tw-rounded-box tw-w-52 tw-mt-4"
+                className="tw-left-0 tw-menu tw-dropdown-content tw-z-20 tw-p-2 tw-shadow tw-text-white tw-bg-neutral tw-rounded-box tw-w-52 tw-mt-3"
               >
                 {navIndexes.map(item => (
                   <Link to={item.path} key={item.path}>
@@ -119,34 +116,42 @@ function Header() {
           <div className='tw-flex tw-flex-col tw-px-2 tw--mx-4 md:tw-flex-row md:tw-mx-10 md:tw-py-0 tw-justify-end'>
             <SearchBar />
             {user && (
-              <>
-                {user.isAdmin && (
-                  <li>
-                    <Link to="/admin" onClick={hideNavbar}>
-                      Admin
-                    </Link>
-                  </li>
-                )}
-                <li className="me-3">
-                  <span className="d-inline-block me-1">
-                    Hello,{' '}
+              <div className='tw-dropdown tw-dropdown-bottom'>
+                <div tabIndex={0} role='button' className={`${user.pictureUrl || 'tw-placeholder'} tw-avatar`}>
+                  {user.pictureUrl ? <div className='tw-w-12 tw-ml-3 tw-mt-1 tw-rounded-full'>
+                    <img src={user.pictureUrl}/>
+                  </div> : <div className="tw-bg-neutral tw-text-neutral-content tw-rounded-full tw-mt-1 tw-ml-3 tw-w-12">
+                    <span className="tw-text-3xl">{user.firstName[0]}</span>
+                  </div>}
+                  <ul
+                    tabIndex={0}
+                    className="tw-left-0 tw-menu tw-dropdown-content tw-z-20 tw-p-2 tw-shadow tw-text-white tw-bg-neutral tw-rounded-box tw-w-52 tw-mt-3"
+                  >
+                    {user.isAdmin && (
+                      <Link to ='/admin' onClick={hideNavbar}>
+                        <li className="tw-btn tw-btn-ghost tw-rounded-btn tw-w-full hover:tw-bg-secondary hover:tw-text-base-100">
+                          Admin
+                        </li>
+                      </Link>
+                    )}
                     <Link to="/account" onClick={hideNavbar}>
-                      {user.firstName}!
+                      <li className="tw-btn tw-btn-ghost tw-rounded-btn tw-w-full hover:tw-bg-secondary hover:tw-text-base-100">
+                        Account Settings
+                      </li>
                     </Link>
-                  </span>
-                  {user.pictureUrl && <div className="header__picture" style={{ backgroundImage: `url(${user.pictureUrl})` }}></div>}
-                </li>
-                <li className="text-white">
-                  <a href="/logout" onClick={onLogout}>
-                    Log out
-                  </a>
-                </li>
-              </>
+                    <li className="tw-btn tw-btn-ghost tw-rounded-btn tw-w-full hover:tw-bg-secondary hover:tw-text-base-100">
+                      <a href='/logout' onClick={onLogout}>
+                        Log out
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             )}
             {!user && (
               <li>
                 <Link to="/login" onClick={hideNavbar}>
-                  <label className="tw-px-2.5 tw-py-2 tw-text-white tw-bg-base-100 tw-border-base-100 tw-transition-colors tw-duration-300 tw-transform hover:tw-bg-secondary hover:tw-text-base-100 md:tw-mx-2 tw-btn tw-btn-ghost tw-rounded-btn">
+                  <label className="tw-px-2.5 tw-py-2 tw-text-white tw-bg-base-100 tw-border-base-100 hover:tw-bg-secondary hover:tw-text-base-100 md:tw-mx-2 tw-btn tw-btn-ghost tw-rounded-btn">
                     Log In
                   </label>
                 </Link>

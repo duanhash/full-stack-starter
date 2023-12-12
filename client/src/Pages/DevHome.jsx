@@ -24,7 +24,7 @@ const DevHome = () => {
          DevHome - {staticContext?.env?.VITE_SITE_TITLE ?? ''} 
         </title>
       </Helmet>
-      <main className='container'>
+      <main className='container tw-text-white'>
         <h1>DevHome</h1>
         {user && <div className='mb-3'>
           <Link to='/dev/stocks/new'>Create a new Stock</Link>
@@ -33,7 +33,7 @@ const DevHome = () => {
           {data?.map((record) => (
             <div key={record.id} className='col-3'>
               <DevStocks id={record.id} Ticker={record.Ticker} About={record.About} ImagesUrl={record.ImagesUrl}/>
-            </div>
+            </div>  
           ))}
         </div>
       </main>

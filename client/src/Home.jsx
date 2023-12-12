@@ -38,7 +38,6 @@ const Home = () => {
       <>
         <section className="tw-mx-auto tw-max-w-screen-xl tw-pb-4 tw-px-4 sm:tw-px-8 tw-z-10">
           <div className="tw-text-center tw-space-y-4">
-            {user && <h1><Link to='/dev/stocks/new'>Create a new Item</Link></h1>}
             <h1 className="tw-text-secondary tw-font-bold tw-text-4xl md:tw-text-5xl">
               Welcome to my
               <span className="tw-text-white"> Stock Screener</span>
